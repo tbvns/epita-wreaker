@@ -71,18 +71,27 @@ void prtRandGarb(unsigned long int len, unsigned int blocksz, FILE* dest){
 //copy no newline : copies the contents of (a) bash script(s) without newlines
 void cpnonl (FILE** src, unsigned char nsrc, FILE* dest){
 	char c;
+	char tick=0;
 	char com=0;
 
 	for (unsigned char i=0; i<nsrc; i++){
 		while( (c=fgetc(src[i])) != EOF){
-			if (c=='\n'){
-				fputc('`',dest);
-				fputc('`',dest);
-				c= (com)? '`' : ';';
-				com=0;
-			} else if (c=='#'){
-				fputc('`',dest);
-				com=1;
+			switch (c){
+				case '#':
+					if (!tick){fputc('`',dest);}
+					com=tick=1;
+					break;
+				case '\n':
+					if (!com){fputc('`',dest);}
+					fputc('`',dest);
+					c=';';
+					break;
+				case '`':
+					if (tick && com){
+						tick=com=0;
+					} else if (!tick && !com){
+						tick=1;
+					}
 			}
 			fputc(c,dest);
 		}
