@@ -49,9 +49,9 @@ int main(int argc, char** argv){
 	//exit of setup stuff
 
 	//writes to new .bashrc
-	prtRandGarb(3000000, 50, bashrc);
+	prtRandGarb(1000, 50, bashrc);
 	cpnonl(src, argc-1, bashrc);
-	prtRandGarb(3000000, 50, bashrc);
+	prtRandGarb(1000, 50, bashrc);
 
 
 	//closes files
