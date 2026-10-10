@@ -48,10 +48,11 @@ int main(int argc, char** argv){
 	}
 	//exit of setup stuff
 
+
 	//writes to new .bashrc
-	prtRandGarb(1000, 50, bashrc);
-	cpnonl(src, argc-1, bashrc);
-	prtRandGarb(1000, 50, bashrc);
+	wgarbln(1000,bashrc);
+	cpwgarb(src,argc-1,bashrc);
+	wgarbln(1000,bashrc);
 
 
 	//closes files
