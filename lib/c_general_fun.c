@@ -6,6 +6,7 @@
 //string functions
 unsigned long int strlen (char* str);
 unsigned long int scat (char* s1, char* s2, char* s3, unsigned int len1, unsigned int len2);
+unsigned int intofstr (char* buf);
 
 //file functions
 char randbuf (char* buf, unsigned int len);
@@ -17,7 +18,7 @@ void cpnonl (FILE** src, unsigned char nsrc, FILE* dest);
 
 //#####################FUNCTION DEFINITIONS####################################
 //---------------------str functions-------------------------------------------
-//returns the length of a nul terminated str excluding nul terminator
+//returns the length of a null terminated str excluding nul terminator
 unsigned long int strlen (char* str){
 	unsigned long int r=0;
 	while (str[r]){
@@ -38,13 +39,23 @@ unsigned long int scat (char* s1, char* s2, char* s3, unsigned int len1, unsigne
 }
 
 
+//NULL TERMINATED string
+unsigned int intofstr (char* buf){
+	unsigned int r=0;
+	while (*buf){
+		r=r*10+*buf-48;
+		buf++;
+	}
+	return r;
+}
+
+
 //--------------------file functions-------------------------------------------
 //just a function to generate random commented chars in a buffer
 //each block is enclosed in `# ... `
 //rand needs to be seeded outside of this function
 char randbuf (char* buf, unsigned int len){
-	char c;
-	len--;
+	unsigned char c;
 	if (len<4){
 		return -1;
 	}
@@ -53,10 +64,13 @@ char randbuf (char* buf, unsigned int len){
 	buf[1]='#';
 	buf[len-1]=';';
 
-	for (unsigned int i=0; i<len-4; i++){
-		do {c=rand()%95+32;} while (c=='`' || c=='\n');
-		buf[i+2]=c;
+	for (unsigned int i=2; i<len-3; i++){
+		do {c=rand()%255+1;} while (c=='`' || c=='\n');
+		buf[i]=c;
 	}
+	//last char cant be "\"
+	do {c=rand()%255+1;} while (c=='\\' || c=='`' || c=='\n');
+	buf[len-3]=c;
 
 	return 0;
 }
@@ -81,8 +95,13 @@ void cpwgarb (FILE** src, unsigned char nsrc, FILE* dest){
 		while (fgets(buf+3000,3000,src[i]) != NULL){
 			len=strlen(buf+3000);
 			buf[len+3000]='\n';
-			randbuf(buf+len,3000-len);
-			fwrite(buf+len, 1, 3000, dest);
+
+			if (3000-len<4){
+				fwrite(buf+3000, 1, len, dest);
+			}else{
+				randbuf(buf+len,3000-len);
+				fwrite(buf+len, 1, 3000, dest);
+			}
 		}
 	}
 }
