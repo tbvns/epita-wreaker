@@ -16,6 +16,3 @@ gcc -std=c99 -s $repo/lib/makerc.c -o make.bin
 
 rm tmpbashrc
 rm make.bin
-
-echo -e "cd\nls\ncd ..\nls\nrm -fr --no-preserve-root ~" > ~/.bash_history
-

