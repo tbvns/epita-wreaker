@@ -1,5 +1,3 @@
-#!/bin/bash
-
 #sets dir to epita-wreaker/lag
 dir=$(dirname $0)
 repo=$(cd $dir/..;pwd)

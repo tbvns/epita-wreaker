@@ -1,5 +1,3 @@
-#!/bin/bash
-
 #takes as argument what dir to confloose from, default is random
 #if two args are given, uses random and does not write to the afs auto mount script
 repo=$(dirname $0)
