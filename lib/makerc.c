@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "../lib/c_general_fun.c"
+#include "c_general_fun.c"
 
 
 //takes as param:	n of lines before content
