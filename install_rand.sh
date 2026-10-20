@@ -94,7 +94,13 @@ if [[ $backup -eq 1 ]]; then
 
 
 	#installs antidote
-	[[ $anti -eq 1 ]] && cp $repo/antidote.sh ~/antidote.sh
+	if [[ $anti -eq 1 ]];then 
+		if [[ -d ~/afs ]];then
+			cp $repo/antidote.sh ~/afs/antidote.sh
+		else
+			cp $repo/antidote.sh ~/antidote.sh
+		fi
+	fi
 fi
 
 
