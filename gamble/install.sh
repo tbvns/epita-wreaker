@@ -1,3 +1,4 @@
+#!/bin/sh
 #sets dir to epita-wreaker/lag
 repo=$1
 
