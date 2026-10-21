@@ -16,5 +16,3 @@ else
 fi
 
 [[ -f $bakdir/afs/.confs/install.sh ]] && cp $bakdir/afs/.confs/install.sh ~/afs/.confs/install.sh
-
-cp $bakdir/.bashrc ~/.bashrc

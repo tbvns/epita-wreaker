@@ -35,10 +35,10 @@ for i in $(seq 1 $(($#))); do
 			unsafe=1;;
 		-perm)
 			[[ -d ~/afs ]] && perm=1;;
-		-nobak)
-			backup=0;;
 		-tar)
 			tar=1;;
+		-nobak)
+			backup=0;;
 		-noanti)
 			anti=0;;
 		-evil)
