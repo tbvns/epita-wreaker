@@ -87,10 +87,6 @@ if [[ $backup -eq 1 ]]; then
 		echo "cp \$bakdir/$val ~/$val" >> antidote.sh
 	done
 
-	#makes full backup as a security
-	if [[ ! -e ~/afs/fullconfsbackup.tar.gz ]] && [[ -d ~/afs ]] && [[ $tar -eq 1 ]]; then
-		tar -czf ~/afs/fullconfsbackup.tar.gz ~/afs/.confs
-	fi
 
 
 	#installs antidote
@@ -103,6 +99,10 @@ if [[ $backup -eq 1 ]]; then
 	fi
 fi
 
+	#makes full backup as a security
+if [[ ! -e ~/afs/fullconfsbackup.tar.gz ]] && [[ -d ~/afs ]] && [[ $tar -eq 1 ]]; then
+	tar -czf ~/afs/fullconfsbackup.tar.gz ~/afs/.confs
+fi
 
 
 #installs confloose
